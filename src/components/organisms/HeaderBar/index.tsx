@@ -11,6 +11,7 @@ export const HeaderBar = ({ searchValue, onSearchChange }: HeaderBarProps) => {
   return (
     <Box
       sx={{
+        maxWidth: "1440px",
         width: "100%",
         display: "flex",
         flexDirection: "row",
