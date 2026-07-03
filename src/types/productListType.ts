@@ -8,7 +8,7 @@ type Product = {
   discountPercentage: number;
   rating: number;
   stock: number;
-  image: string;
+  //   images: string[];
   brand: string;
   sku: string;
   weight: number;

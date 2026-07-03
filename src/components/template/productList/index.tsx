@@ -3,17 +3,19 @@
 import { getProductList } from "@/services/productService";
 import { useEffect, useState } from "react";
 import useSWR from "swr";
-import { ProductCard } from "../productCard";
+import { ProductCard } from "../ProductCard";
 import Grid from "@mui/material/Grid";
 import { Box } from "@mui/material";
+import { LoadingSpinner } from "@/components/atoms/LoadingSpinner";
+import { PaginationBar } from "@/components/molecules/Pagination";
 
 type ProductKey = ["products", number, number];
 
-export const ProductList = () => {
-  //   const [productList, setProductList] = useState<Products | undefined>(
-  //     undefined,
-  //   );
+type ProductsListProps = {
+  searchValue: string;
+};
 
+export const ProductList = ({ searchValue = "" }: ProductsListProps) => {
   const fetcher = ([_, limit, skip]: ProductKey) => getProductList(limit, skip);
 
   const [page, setPage] = useState(1);
@@ -21,15 +23,12 @@ export const ProductList = () => {
   const limit = 20;
   const skip = (page - 1) * limit;
 
-  //   useEffect(() => {
-  //     const productListFetched = async ) => {
-  //       const res: Products = await getProductList();
-  //       setProductList(res);
-  //       console.log("Product List Fetched:", res);
-  //       //   return res;
-  //     };
-  //     productListFetched();
-  //   }, [productList]);
+  const handlePaginationChange = (
+    event: React.ChangeEvent<unknown>,
+    value: number,
+  ) => {
+    setPage(value);
+  };
 
   const { data, error, isLoading } = useSWR<ProductsResponse>(
     ["products", limit, skip],
@@ -39,16 +38,23 @@ export const ProductList = () => {
     },
   );
 
-  console.log("Product List Data:", data);
-  //   setProductList(data);
+  const keyword = searchValue?.toLowerCase() ?? "";
+
+  const filteredData = data?.products?.filter((prod) => {
+    if (!keyword) return true;
+
+    const brand = prod.brand?.toLowerCase() ?? "";
+    const title = prod.title?.toLowerCase() ?? "";
+
+    return title.includes(keyword) || brand.includes(keyword);
+  });
 
   if (error) return <div>Error loading products</div>;
-  if (isLoading) return <div>Loading products...</div>;
+  if (isLoading) return <LoadingSpinner />;
   return (
     <Box>
-      <h2>Product List</h2>
       <Grid container spacing={2}>
-        {data?.products?.map((product, index) => (
+        {filteredData?.map((product, index) => (
           <Grid
             key={index}
             size={{
@@ -62,6 +68,7 @@ export const ProductList = () => {
           </Grid>
         ))}
       </Grid>
+      <PaginationBar page={page} handleChange={handlePaginationChange} />
     </Box>
   );
 };

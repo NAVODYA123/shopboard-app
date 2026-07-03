@@ -1,3 +1,4 @@
+import { Review } from "@/components/molecules/Reveiw";
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 
@@ -11,8 +12,10 @@ type ProductCardProps = {
   discountPercentage: number;
   rating: number;
   stock: number;
-  image: string;
+  images: string[];
   brand: string;
+  reviews: reviews[];
+  sku: string;
 };
 export const ProductCard = ({
   id,
@@ -24,8 +27,10 @@ export const ProductCard = ({
   discountPercentage,
   rating,
   stock,
-  image,
+  images,
   brand,
+  reviews,
+  sku,
 }: ProductCardProps) => {
   return (
     <Box>
@@ -33,38 +38,66 @@ export const ProductCard = ({
         sx={{
           border: "1px solid #ccc",
           padding: "16px",
-          //   borderRadius: "8px",
           backgroundColor: "#F4F4F54D",
         }}
       >
-        <Image src={image} alt={title} width={200} height={200} />
+        <Image src={images?.[0]} alt={title} width={200} height={200} />
         <Typography
           sx={{ color: "#0A0A0A", fontWeight: "700", fontSize: "16px" }}
-          variant="h6"
         >
           {title}
         </Typography>
-        <Typography
-          sx={{ color: "#71717A", fontWeight: "600", fontSize: "10" }}
-          variant="body1"
+
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            gap: "8px",
+          }}
         >
-          {brand}
-        </Typography>
-        <Typography
-          sx={{ color: "#4F46E5CC", fontWeight: "800", fontSize: "10" }}
-          variant="body2"
+          <Review rating={rating} />
+          <Typography
+            sx={{ color: "#71717A", fontWeight: "600", fontSize: "10" }}
+          >
+            {reviews.length}
+          </Typography>
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            gap: "8px",
+            textTransform: "capitalize",
+          }}
         >
-          {" "}
-          {category}
-        </Typography>
+          <Typography
+            sx={{
+              color: "#4F46E5CC",
+              fontWeight: "800",
+              fontSize: "10",
+              fontFamily: "var(--font-jakarta)",
+            }}
+          >
+            {category}
+          </Typography>
+
+          <Typography
+            sx={{
+              color: "#71717A",
+              fontWeight: "600",
+              fontSize: "10 !important",
+              fontFamily: "var(--font-jakarta)",
+            }}
+          >
+            {brand}
+          </Typography>
+        </Box>
         <Typography
           sx={{ color: "#0A0A0A", fontWeight: "800", fontSize: "20px" }}
-          variant="body2"
         >
           ${price.toFixed(2)}
         </Typography>
-
-        <></>
       </Box>
     </Box>
   );
