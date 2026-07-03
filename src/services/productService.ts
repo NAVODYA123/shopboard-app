@@ -11,7 +11,6 @@ export const getProductList = async (limit: number, skip: number) => {
     throw new Error("Failed to fetch products");
   }
 
-  console.log("Product List:", data);
   return data;
 };
 
@@ -19,8 +18,6 @@ export const getProductList = async (limit: number, skip: number) => {
 export const getProductItem = async (id: number) => {
   const response = await fetch(`${BASE_URL}/${id}`);
   const data = await response.json();
-
-  console.log("Product Item:", data);
   return data;
 };
 
@@ -28,8 +25,6 @@ export const getProductItem = async (id: number) => {
 export const getProductCategories = async () => {
   const response = await fetch(`${BASE_URL}/categories`);
   const data = await response.json();
-
-  console.log("Product Categories:", data);
   return data;
 };
 
@@ -37,7 +32,5 @@ export const getProductCategories = async () => {
 export const getProductbyCategory = async (slug: string) => {
   const response = await fetch(`${BASE_URL}/category/${slug}`);
   const data = await response.json();
-
-  console.log("Products in Category:", data);
   return data;
 };

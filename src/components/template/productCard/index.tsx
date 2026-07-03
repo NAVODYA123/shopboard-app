@@ -5,7 +5,6 @@ import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import { Reviews } from "@/types/productListType";
-import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
 
 type ProductCardProps = {
   id: number;

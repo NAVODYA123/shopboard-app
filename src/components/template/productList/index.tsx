@@ -1,6 +1,9 @@
 "use client";
 
-import { getProductList } from "@/services/productService";
+import {
+  getProductbyCategory,
+  getProductList,
+} from "@/services/productService";
 import { useState } from "react";
 import useSWR from "swr";
 import { ProductCard } from "../ProductCard";
@@ -9,14 +12,19 @@ import { Box } from "@mui/material";
 import { LoadingSpinner } from "@/components/atoms/LoadingSpinner";
 import { PaginationBar } from "@/components/molecules/Pagination";
 import { ProductsResponse } from "@/types/productListType";
+import { Category } from "@/types/categoryType";
 
 type ProductKey = ["products", number, number];
 
 type ProductsListProps = {
   searchValue: string;
+  filteredCategory: string;
 };
 
-export const ProductList = ({ searchValue = "" }: ProductsListProps) => {
+export const ProductList = ({
+  searchValue = "",
+  filteredCategory = "",
+}: ProductsListProps) => {
   const fetcher = ([_, limit, skip]: ProductKey) => getProductList(limit, skip);
 
   const [page, setPage] = useState(1);
