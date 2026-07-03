@@ -51,11 +51,21 @@ export const ProductList = ({ searchValue = "" }: ProductsListProps) => {
 
   if (error) return <div>Error loading products</div>;
   if (isLoading) return <LoadingSpinner />;
+
+  const isSingle = filteredData?.length === 1;
   return (
-    <Box>
-      <Grid container spacing={2}>
+    <Box sx={{ maxWidth: "1440px" }}>
+      <Grid
+        container
+        spacing={2}
+        sx={{
+          maxWidth: "1440px",
+          justifyContent: isSingle ? "center" : "flex-start",
+        }}
+      >
         {filteredData?.map((product, index) => (
           <Grid
+            sx={{ width: "100%" }}
             key={index}
             size={{
               xs: 12,

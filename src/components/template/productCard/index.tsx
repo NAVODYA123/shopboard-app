@@ -1,3 +1,4 @@
+import { AddToCartButton } from "@/components/atoms/AddToCartButton";
 import { Review } from "@/components/molecules/Reveiw";
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
@@ -33,12 +34,13 @@ export const ProductCard = ({
   sku,
 }: ProductCardProps) => {
   return (
-    <Box>
+    <Box sx={{ width: "100%" }}>
       <Box
         sx={{
           border: "1px solid #ccc",
           padding: "16px",
           backgroundColor: "#F4F4F54D",
+          width: "100%",
         }}
       >
         <Image src={images?.[0]} alt={title} width={200} height={200} />
@@ -98,6 +100,9 @@ export const ProductCard = ({
         >
           ${price.toFixed(2)}
         </Typography>
+        <Box>
+          <AddToCartButton />
+        </Box>
       </Box>
     </Box>
   );
