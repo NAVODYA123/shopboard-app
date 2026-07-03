@@ -1,7 +1,9 @@
 import { AddToCartButton } from "@/components/atoms/AddToCartButton";
+import StockChip from "@/components/atoms/StockChip";
 import { Review } from "@/components/molecules/Reveiw";
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
+import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 
 type ProductCardProps = {
   id: number;
@@ -37,13 +39,51 @@ export const ProductCard = ({
     <Box sx={{ width: "100%" }}>
       <Box
         sx={{
-          border: "1px solid #ccc",
+          border: "0.67px solid #E4E4E780",
           padding: "16px",
           backgroundColor: "#F4F4F54D",
           width: "100%",
+          borderRadius: "32px",
         }}
       >
-        <Image src={images?.[0]} alt={title} width={200} height={200} />
+        <Box sx={{ display: "flex", justifyContent: "center" }}>
+          <Image src={images?.[0]} alt={title} width={200} height={200} />
+        </Box>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            gap: "8px",
+            textTransform: "capitalize",
+            alignItems: "center",
+            paddingBottom: "24px",
+          }}
+        >
+          <Typography
+            sx={{
+              color: "#4F46E5CC",
+              fontWeight: "800",
+              fontSize: "10",
+              fontFamily: "var(--font-jakarta)",
+            }}
+          >
+            {category}
+          </Typography>
+          <FiberManualRecordIcon
+            sx={{ color: "#71717A", width: "4px", height: "4px" }}
+          />
+
+          <Typography
+            sx={{
+              color: "#71717A",
+              fontWeight: "600",
+              fontSize: "10 !important",
+              fontFamily: "var(--font-jakarta)",
+            }}
+          >
+            {brand}
+          </Typography>
+        </Box>
         <Typography
           sx={{ color: "#0A0A0A", fontWeight: "700", fontSize: "16px" }}
         >
@@ -65,41 +105,28 @@ export const ProductCard = ({
             {reviews.length}
           </Typography>
         </Box>
+
         <Box
           sx={{
             display: "flex",
             flexDirection: "row",
-            gap: "8px",
-            textTransform: "capitalize",
+            justifyContent: "space-between",
+            paddingBottom: "24px",
           }}
         >
           <Typography
             sx={{
-              color: "#4F46E5CC",
+              color: "#0A0A0A",
               fontWeight: "800",
-              fontSize: "10",
-              fontFamily: "var(--font-jakarta)",
+              fontSize: "20px",
+              fontFamily: "var(--font-jetbrains-mono)",
             }}
           >
-            {category}
+            ${price.toFixed(2)}
           </Typography>
-
-          <Typography
-            sx={{
-              color: "#71717A",
-              fontWeight: "600",
-              fontSize: "10 !important",
-              fontFamily: "var(--font-jakarta)",
-            }}
-          >
-            {brand}
-          </Typography>
+          <StockChip />
         </Box>
-        <Typography
-          sx={{ color: "#0A0A0A", fontWeight: "800", fontSize: "20px" }}
-        >
-          ${price.toFixed(2)}
-        </Typography>
+
         <Box>
           <AddToCartButton />
         </Box>

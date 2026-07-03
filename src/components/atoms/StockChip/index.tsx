@@ -5,7 +5,7 @@ export default function StockChip() {
   return (
     <Stack direction="row" spacing={1}>
       <Chip
-        label="Chip Filled"
+        label="In Stock"
         sx={{
           width: 61,
           height: 21,
