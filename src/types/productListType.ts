@@ -1,4 +1,4 @@
-type Product = {
+export type Product = {
   id: number;
   title: string;
   name: string;
@@ -8,7 +8,6 @@ type Product = {
   discountPercentage: number;
   rating: number;
   stock: number;
-  //   images: string[];
   brand: string;
   sku: string;
   weight: number;
@@ -16,7 +15,7 @@ type Product = {
   warrantyInformation: string;
   shippingInformation: string;
   availabilityStatus: string;
-  reviews: reviews[];
+  reviews: Reviews[];
   returnPolicy: string;
   minimumOrderQuantity: 24;
   meta: {
@@ -29,13 +28,13 @@ type Product = {
   images: string[];
 };
 
-type dimensions = {
+export type dimensions = {
   width: number;
   height: number;
   depth: number;
 };
 
-type reviews = {
+export type Reviews = {
   rating: number;
   comment: string;
   date: string;
@@ -43,7 +42,7 @@ type reviews = {
   reviewerEmail: string;
 };
 
-type ProductsResponse = {
+export type ProductsResponse = {
   products: Product[];
   total: number;
   skip: number;

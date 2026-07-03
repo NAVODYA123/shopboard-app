@@ -1,13 +1,14 @@
 "use client";
 
 import { getProductList } from "@/services/productService";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import useSWR from "swr";
 import { ProductCard } from "../ProductCard";
 import Grid from "@mui/material/Grid";
 import { Box } from "@mui/material";
 import { LoadingSpinner } from "@/components/atoms/LoadingSpinner";
 import { PaginationBar } from "@/components/molecules/Pagination";
+import { ProductsResponse } from "@/types/productListType";
 
 type ProductKey = ["products", number, number];
 

@@ -4,6 +4,8 @@ import { Review } from "@/components/molecules/Reveiw";
 import { Box, Typography } from "@mui/material";
 import Image from "next/image";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
+import { Reviews } from "@/types/productListType";
+import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
 
 type ProductCardProps = {
   id: number;
@@ -17,7 +19,7 @@ type ProductCardProps = {
   stock: number;
   images: string[];
   brand: string;
-  reviews: reviews[];
+  reviews: Reviews[];
   sku: string;
 };
 export const ProductCard = ({
@@ -46,6 +48,42 @@ export const ProductCard = ({
           borderRadius: "32px",
         }}
       >
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "space-between",
+          }}
+        >
+          <StockChip
+            label={`sale -${discountPercentage.toFixed(0)} %`}
+            sx={{
+              width: 100,
+              height: 23,
+              backgroundColor: "#4F46E5E5",
+              border: "1px solid #4F46E5E5",
+              borderRadius: "9999px",
+              boxShadow: "0px 1px 3px 0px #0000001A",
+              padding: "4px 10px",
+              fontSize: "10px",
+              fontWeight: 800,
+              fontStyle: "Plus Jakarta Sans",
+              color: "#FFFFFF",
+              "& .MuiChip-label": {
+                padding: 0,
+              },
+              textTransform: "uppercase",
+            }}
+          />
+          <Box>
+            <Image
+              src={"assets/FavIcon.svg"}
+              alt={title}
+              width={32}
+              height={32}
+            />
+          </Box>
+        </Box>
         <Box sx={{ display: "flex", justifyContent: "center" }}>
           <Image src={images?.[0]} alt={title} width={200} height={200} />
         </Box>
@@ -124,10 +162,30 @@ export const ProductCard = ({
           >
             ${price.toFixed(2)}
           </Typography>
-          <StockChip />
+          <StockChip
+            label="in stock"
+            sx={{
+              width: 61,
+              height: 21,
+              backgroundColor: "#ECFDF5",
+              border: "1px solid #A4F4CF",
+              borderRadius: "9999px",
+              boxShadow: "0px 0px 0px 1px #A4F4CF",
+              padding: "2px 8px",
+              fontSize: "12px",
+              fontWeight: 500,
+              color: "#065F46",
+              "& .MuiChip-label": {
+                padding: 0,
+              },
+              textTransform: "capitalize",
+            }}
+          />
         </Box>
 
-        <Box>
+        <Box
+          sx={{ paddingX: "20px", paddingBottom: "20px", paddingTop: "12px" }}
+        >
           <AddToCartButton />
         </Box>
       </Box>
