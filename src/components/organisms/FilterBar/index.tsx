@@ -1,7 +1,7 @@
 import { CategoryFilter } from "@/components/molecules/CategoryFilter";
 import { getProductCategories } from "@/services/productService";
 import { Category } from "@/types/categoryType";
-import { Box, SelectChangeEvent } from "@mui/material";
+import { Box, Divider, SelectChangeEvent, Typography } from "@mui/material";
 import { useState } from "react";
 import useSWR from "swr";
 
@@ -32,14 +32,35 @@ export const FilterBar = () => {
         width: "100%",
         display: "flex",
         flexDirection: "row",
-        justifyContent: "space-between",
-        height: "64px",
+        justifyContent: "center",
+        height: "97px",
         alignItems: "center",
         padding: "0px 24px",
         backgroundColor: "#FFFFFF",
       }}
     >
-      <Box>
+      <Box
+        sx={{
+          width: "542.21px",
+          height: "57.33px",
+          borderTop: "0.67px solid #E4E4E7CC",
+          borderRadius: "9999px",
+          opacity: 1,
+
+          boxShadow:
+            "0px 8px 10px -6px #0000000D, 0px 20px 25px -5px #0000000D",
+
+          display: "flex",
+          alignItems: "center",
+          px: 2,
+        }}
+      >
+        <CategoryFilter
+          categories={data as Category[]}
+          handleChange={handleCategoryChange}
+          category={category as Category}
+        />
+        <Divider orientation="vertical" variant="middle" flexItem />
         <CategoryFilter
           categories={data as Category[]}
           handleChange={handleCategoryChange}

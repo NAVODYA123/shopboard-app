@@ -14,10 +14,20 @@ export const HeaderBar = ({ searchValue, onSearchChange }: HeaderBarProps) => {
         maxWidth: "1440px",
         width: "100%",
         display: "flex",
-        flexDirection: "row",
+        flexDirection: {
+          xs: "column",
+          sm: "row",
+        },
         justifyContent: "space-between",
-        height: "64px",
         alignItems: "center",
+        minHeight: {
+          xs: "auto",
+          sm: "64px",
+        },
+        gap: {
+          xs: 2,
+          sm: 0,
+        },
         padding: "0px 24px",
         backgroundColor: "#FFFFFF",
       }}

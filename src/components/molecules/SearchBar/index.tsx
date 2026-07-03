@@ -16,24 +16,16 @@ export const SearchBar = ({ searchValue, onSearchChange }: SearchBarProps) => {
         onChange={(e) => onSearchChange(e.target.value)}
         placeholder="Search products, brands, categories…"
         sx={{
-          //   width: "512px",
-          //   height: "41px",
-          //   "& .MuiOutlinedInput-root": {
-          //     borderRadius: "30px",
-          //   },
-          //   "& .MuiOutlinedInput-input": {
-          //     padding: "0 14px",
-          //     height: "41px",
-          //     boxSizing: "border-box",
-          //   },
-          width: "512px",
+          width: {
+            xs: "100%",
+            sm: "512px",
+          },
 
           "& .MuiOutlinedInput-root": {
             height: "41px",
             borderRadius: "30px",
             backgroundColor: "#F4F4F599",
 
-            // remove border completely
             "& fieldset": {
               border: "none",
             },

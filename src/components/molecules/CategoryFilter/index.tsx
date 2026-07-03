@@ -19,10 +19,25 @@ export const CategoryFilter = ({
   category,
 }: CategoryFilterProps) => {
   return (
-    <Box>
+    <Box sx={{ width: "100%" }}>
       <FormControl fullWidth>
         <Select
-          sx={{ width: "200px" }}
+          sx={{
+            width: "200px",
+            "& .MuiOutlinedInput-notchedOutline": {
+              border: "none",
+            },
+
+            "&:hover .MuiOutlinedInput-notchedOutline": {
+              border: "none",
+            },
+
+            "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+              border: "none",
+            },
+
+            boxShadow: "none",
+          }}
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={category?.slug ?? ""}

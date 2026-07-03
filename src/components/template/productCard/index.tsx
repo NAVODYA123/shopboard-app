@@ -37,7 +37,7 @@ export const ProductCard = ({
   sku,
 }: ProductCardProps) => {
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box sx={{ width: "100%", minWidth: "332px", minHeight: "532px" }}>
       <Box
         sx={{
           border: "0.67px solid #E4E4E780",
